@@ -24,8 +24,8 @@
     ],
     "rules": {
         "indent": ["warn", 2],
-        "quotes": "warn"
-       
+        "quotes": "warn",
+        "comma-style": "warn"
     },
     "settings": {
         "import/resolver": {
