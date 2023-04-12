@@ -23,13 +23,9 @@
         "prettier"
     ],
     "rules": {
-        "semi": 0,
-        "tabWidth": 2,
-        "printWidth": 100,
-        "singleQuote": true,
-        "trailingComma": "all",
-        "jsxSingleQuote": true,
-        "bracketSpacing": true
+        "indent": ["warn", 2],
+        "quotes": "warn"
+       
     },
     "settings": {
         "import/resolver": {
