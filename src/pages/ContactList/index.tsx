@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { StyledContactList } from "./style";
-import { Contact, IContactProps } from "../Contact";
+import { ContactCard, Contact, IContactProps } from "../Contact";
 
+export interface IContactListProps {
+  contacts: Contact[]
+}
 
-
-export const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3000/contacts")
-      .then(({data})=> setContacts(data));
-  }, [])
+export const ContactList: React.FC<IContactListProps> = ({contacts}: IContactListProps) => {
 
   return (
     <StyledContactList>
       {contacts.map(({name, addresses, phoneNumbers}: IContactProps, i) => (
-        <Contact name={name} addresses={addresses} phoneNumbers={phoneNumbers} key={i}/>
+        <ContactCard name={name} addresses={addresses} phoneNumbers={phoneNumbers} key={i}/>
       ))}
     </StyledContactList>
   )
