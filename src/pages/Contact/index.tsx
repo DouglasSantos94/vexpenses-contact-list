@@ -16,13 +16,17 @@ export interface IContactProps {
   phoneNumbers: string[]
 }
 
-export const Contact = () => {
+export const Contact = ({name, addresses, phoneNumbers}: IContactProps) => {
   return (
     <C.Card>
-      <C.CardTitle>Teste</C.CardTitle>
+      <C.CardTitle>{name}</C.CardTitle>
       <C.ContactInfo>
-        <p>Nome: Teste</p>
-        <p>Telefone: Teste</p>
+        {addresses.map((address, i) => (
+          <p key={i}>Endereço : {address.street}</p>
+        ))}
+        {phoneNumbers.map((phoneNumber, i) => (
+          <p key={i}>Endereço : {phoneNumber}</p>
+        ))}
       </C.ContactInfo>
     </C.Card>
   );
