@@ -1,27 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { StyledContactList } from "./style";
 import { Contact, IContactProps } from "../Contact";
 
-const contacts = [
-  {
-    name: "Contact 1",
-    addresses: [
-      {
-        "cep": "89010025",
-        "state": "SC",
-        "city": "Blumenau",
-        "neighborhood": "Centro",
-        "street": "Rua Doutor Luiz de Freitas Melro",
-        "service": "viacep"
-      }
-    ],
-    phoneNumbers: [
-      "8888888"
-    ]
-  }
-];
+
 
 export const ContactList = () => {
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/contacts")
+      .then(({data})=> setContacts(data));
+  }, [])
+
   return (
     <StyledContactList>
       {contacts.map(({name, addresses, phoneNumbers}: IContactProps, i) => (
