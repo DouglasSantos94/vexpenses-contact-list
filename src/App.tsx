@@ -1,13 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { Contact } from "./pages/Contact/Contact";
+import { Contact } from "./pages/Contact";
+import { ContactList } from "./pages/ContactList/style";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      <Contact />
+      <ContactList>
+        {Array.from({length: 10}, (x, i) => (<li key={i}>
+          <Contact />
+        </li>))}
+      </ContactList>
     </div>
   );
 }
