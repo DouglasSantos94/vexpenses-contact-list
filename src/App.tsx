@@ -1,13 +1,11 @@
 import React from "react";
-import { useState } from "react";
-import { Contact } from "./pages/Contact";
-import { ContactList } from "./pages/ContactList";
+import { Home } from "./pages/Home";
 
 function App() {
 
   return (
     <div className="App">
-      <ContactList />
+      <Home />
     </div>
   );
 }
