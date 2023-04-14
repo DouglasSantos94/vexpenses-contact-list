@@ -1,5 +1,6 @@
 import React from "react";
 import * as C from "./style";
+import { Link } from "react-router-dom";
 
 export type Address = {
   cep: string;
@@ -11,29 +12,30 @@ export type Address = {
 }
 
 export type Contact = {
+  id: string
   name: string,
   addresses: Address[],
   phoneNumbers: string[]
 }
 
 export interface IContactProps {
+  id: string,
   name: string,
   addresses: Address[],
   phoneNumbers: string[]
 }
 
-export const ContactCard = ({name, addresses, phoneNumbers}: IContactProps) => {
+export const ContactCard = ({id, name, addresses, phoneNumbers}: IContactProps) => {
   return (
     <C.Card>
       <C.CardTitle>{name}</C.CardTitle>
       <C.ContactInfo>
-        {addresses.map((address, i) => (
-          <p key={i}>Endereço {i+1}: {address.street}</p>
-        ))}
-        {phoneNumbers.map((phoneNumber, i) => (
-          <p key={i}>Telefone {i+1} : {phoneNumber}</p>
-        ))}
+        <p>Endereço {id}: {addresses[0].street}</p>
+        <p>Telefone {id}: {phoneNumbers[0]}</p>
       </C.ContactInfo>
+      <Link to={`/contact/${id}`} state={{id, name, addresses, phoneNumbers}}>
+        Ver contato
+      </Link>
     </C.Card>
   );
 }

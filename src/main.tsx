@@ -3,18 +3,25 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import { Home } from "./pages/Home";
-import { ContactInfo } from "./pages/Contact/ContactInfo";
+import { ContactDetail } from "./pages/Contact/ContactDetail";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
-  },
-  {
-    path: "contact",
-    element: <ContactInfo />
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "contact/:id",
+        element: <ContactDetail />
+      }
+    ]
   }
 ]);
+
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
