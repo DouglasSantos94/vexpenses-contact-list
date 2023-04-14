@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import { ContactList } from "../ContactList";
 import { Contact } from "../Contact";
+import { Link } from "react-router-dom";
 
 
 export const Home = () => {
@@ -21,6 +22,9 @@ export const Home = () => {
   }
 
   return (
-    <ContactList contacts={contacts && contacts} handleDelete={handleDelete} />
+    <>
+      <Link to="/add-contact">Novo contato</Link>
+      <ContactList contacts={contacts && contacts} handleDelete={handleDelete} />
+    </>
   )
 }

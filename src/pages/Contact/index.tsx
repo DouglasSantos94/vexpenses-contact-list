@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEventHandler } from "react";
+import React from "react";
 import * as C from "./style";
 import { Link } from "react-router-dom";
 
