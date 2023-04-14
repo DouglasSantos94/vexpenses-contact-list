@@ -1,17 +1,18 @@
-import React from "react";
+import React, { ChangeEvent, MouseEventHandler } from "react";
 import { StyledContactList } from "./style";
-import { ContactCard, Contact, IContactProps } from "../Contact";
+import { ContactCard, Contact, IContactCardProps } from "../Contact";
 
 export interface IContactListProps {
-  contacts: Contact[]
+  contacts: Contact[],
+  handleDelete: (id: string) => void
 }
 
-export const ContactList: React.FC<IContactListProps> = ({contacts}: IContactListProps) => {
-
+export const ContactList: React.FC<IContactListProps> = ({contacts, handleDelete}: IContactListProps) => {
+  console.log(contacts)
   return (
     <StyledContactList>
-      {contacts.map(({name, addresses, phoneNumbers}: IContactProps, i) => (
-        <ContactCard name={name} addresses={addresses} phoneNumbers={phoneNumbers} key={i}/>
+      {contacts.map(({id, name, addresses, phoneNumbers}: Contact, i) => (
+        <ContactCard id={id} name={name} addresses={addresses} phoneNumbers={phoneNumbers} handleDelete={handleDelete} key={i}/>
       ))}
     </StyledContactList>
   )

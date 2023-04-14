@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, MouseEventHandler } from "react";
 import * as C from "./style";
 import { Link } from "react-router-dom";
 
@@ -18,14 +18,15 @@ export type Contact = {
   phoneNumbers: string[]
 }
 
-export interface IContactProps {
+export interface IContactCardProps {
   id: string,
   name: string,
   addresses: Address[],
-  phoneNumbers: string[]
+  phoneNumbers: string[],
+  handleDelete: (id: string) => void
 }
 
-export const ContactCard = ({id, name, addresses, phoneNumbers}: IContactProps) => {
+export const ContactCard = ({id, name, addresses, phoneNumbers, handleDelete}: IContactCardProps) => {
   return (
     <C.Card>
       <C.CardTitle>{name}</C.CardTitle>
@@ -36,6 +37,7 @@ export const ContactCard = ({id, name, addresses, phoneNumbers}: IContactProps) 
       <Link to={`/contact/${id}`} state={{id, name, addresses, phoneNumbers}}>
         Ver contato
       </Link>
+      <button onClick={() => handleDelete(id)}>Excluir</button>
     </C.Card>
   );
 }
