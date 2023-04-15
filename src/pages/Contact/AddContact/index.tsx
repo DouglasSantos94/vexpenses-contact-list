@@ -2,6 +2,8 @@ import React from "react";
 import { useForm, FormProvider, UseFormReturn, UseFormProps } from "react-hook-form";
 import { Contact } from "..";
 import { ContactAddressForm } from "./AddressForm";
+import { PhoneNumberForm } from "./PhoneNumberForm";
+import axios from "axios";
 
 const defaultValues: Contact = {
   id: "",
@@ -16,7 +18,9 @@ const defaultValues: Contact = {
     }
   ],
   phoneNumbers: [
-    ""
+    {
+      number: ""
+    }
   ]
 }
 
@@ -26,7 +30,10 @@ export const AddContact = () => {
   });
 
   const submitForm = (form: Contact) => {
-    console.log(form)
+    axios.post("http://localhost:3000/contacts/", {
+      ...form
+    })
+      .then(r => console.log(r.status))
   }
 
   return (
@@ -36,6 +43,7 @@ export const AddContact = () => {
           <h2>Endereços</h2>
           <ContactAddressForm />
         </section>
+          <PhoneNumberForm />
         <button type="submit">Cadastrar contato</button>
       </form>
     </FormProvider>
