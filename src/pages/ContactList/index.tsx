@@ -1,6 +1,6 @@
-import React, { ChangeEvent, MouseEventHandler } from "react";
+import React from "react";
 import { StyledContactList } from "./style";
-import { ContactCard, Contact, IContactCardProps } from "../Contact";
+import { ContactCard, Contact } from "../Contact";
 
 export interface IContactListProps {
   contacts: Contact[],
