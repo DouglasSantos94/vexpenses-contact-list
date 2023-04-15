@@ -1,36 +1,24 @@
 import React from "react";
 import { useForm, FormProvider, UseFormReturn, UseFormProps } from "react-hook-form";
 import { Contact } from "..";
-import { ContactAddressForm } from "./AddressForm";
-import { PhoneNumberForm } from "./PhoneNumberForm";
+import { ContactAddressForm } from "../AddContact/AddressForm";
+import { PhoneNumberForm } from "../AddContact/PhoneNumberForm";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-const defaultValues: Contact = {
-  id: "",
-  name: "",
-  addresses: [
-    {
-      cep: "",
-      state: "",
-      city: "",
-      neighborhood: "",
-      street: "",
-    }
-  ],
-  phoneNumbers: [
-    {
-      number: ""
-    }
-  ]
-}
+export const EditContact = () => {
+  const location = useLocation();
+  const {id, name, addresses, phoneNumbers} = location.state;
 
-export const AddContact = () => {
+  const defaultValues = {id, name, addresses, phoneNumbers};
   const form: UseFormReturn<Contact, UseFormProps> = useForm<Contact>({
     defaultValues,
   });
 
+  console.log(defaultValues)
+
   const submitForm = (form: Contact) => {
-    axios.post("http://localhost:3000/contacts/", {
+    axios.put(`http://localhost:3000/contacts/${id}`, {
       ...form
     })
       .then(r => console.log(r.status))

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { Address, Contact, PhoneNumber } from "..";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { Address, PhoneNumber } from "..";
+import { Link } from "react-router-dom";
 
 export const ContactDetail = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ export const ContactDetail = () => {
       {addresses.map((address: Address, i: number) => (
         <p key={i}>Endereço {i+1}: {address.street}</p>
       ))}
+      <Link to={`/edit/${id}`} state={location.state}>Editar contato</Link>
     </>
   )
 }
