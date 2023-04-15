@@ -10,18 +10,22 @@ export type Address = {
   street: string;
 }
 
+export type PhoneNumber = {
+  number: string;
+}
+
 export type Contact = {
   id: string,
   name: string,
   addresses: Address[],
-  phoneNumbers: string[]
+  phoneNumbers: PhoneNumber[]
 }
 
 export interface IContactCardProps {
   id: string,
   name: string,
   addresses: Address[],
-  phoneNumbers: string[],
+  phoneNumbers: PhoneNumber[],
   handleDelete: (id: string) => void
 }
 
@@ -31,7 +35,7 @@ export const ContactCard = ({id, name, addresses, phoneNumbers, handleDelete}: I
       <C.CardTitle>{name}</C.CardTitle>
       <C.ContactInfo>
         <p>Endereço {id}: {addresses[0].street}</p>
-        <p>Telefone {id}: {phoneNumbers[0]}</p>
+        <p>Telefone {id}: {phoneNumbers[0].number}</p>
       </C.ContactInfo>
       <Link to={`/contact/${id}`} state={{id, name, addresses, phoneNumbers}}>
         Ver contato
