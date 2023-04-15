@@ -8,11 +8,10 @@ export type Address = {
   city: string;
   neighborhood: string;
   street: string;
-  service: string;
 }
 
 export type Contact = {
-  id: string
+  id: string,
   name: string,
   addresses: Address[],
   phoneNumbers: string[]
