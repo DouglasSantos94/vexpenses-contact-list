@@ -1,24 +1,43 @@
 import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Address } from "..";
+import { useForm, FormProvider, UseFormReturn, UseFormProps } from "react-hook-form";
+import { Contact } from "..";
+import { ContactAddressForm } from "./AddressForm";
 
-type Inputs = {
-  name: string,
-  addressses: Address[],
-  phoneNumbers: string[]
+const defaultValues: Contact = {
+  id: "",
+  name: "",
+  addresses: [
+    {
+      cep: "",
+      state: "",
+      city: "",
+      neighborhood: "",
+      street: "",
+    }
+  ],
+  phoneNumbers: [
+    ""
+  ]
 }
 
 export const AddContact = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+  const form: UseFormReturn<Contact, UseFormProps> = useForm<Contact>({
+    defaultValues,
+  });
+
+  const submitForm = (form: Contact) => {
+    console.log(form)
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        <input defaultValue="Nome" {...register("name")} />
-
-        <input type="submit" />
-      </label>
-    </form>
-  );
-};
+    <FormProvider {...form}>
+      <form onSubmit={form.handleSubmit(submitForm)}>
+        <section>
+          <h2>Endereços</h2>
+          <ContactAddressForm />
+        </section>
+        <button type="submit">Cadastrar contato</button>
+      </form>
+    </FormProvider>
+  )
+}
