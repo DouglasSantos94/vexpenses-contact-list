@@ -1,7 +1,7 @@
 import React from "react";
 import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-form";
-import { Address, Contact } from "../..";
 import { viaCep } from "../../../../services/viaCep";
+import { Contact } from "../../../../types/contact";
 
 
 export const ContactAddressForm = () => {

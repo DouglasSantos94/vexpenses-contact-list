@@ -1,9 +1,9 @@
 import React from "react";
 import { FormProvider, UseFormProps, UseFormReturn } from "react-hook-form";
-import { Contact } from "../../pages/Contact";
 import { ContactAddressForm } from "../../pages/Contact/AddContact/AddressForm";
 import { PhoneNumberForm } from "../../pages/Contact/AddContact/PhoneNumberForm";
 import { NameInput } from "../../pages/Contact/AddContact";
+import { Contact } from "../../types/contact";
 
 export interface IFormProps {
   isEdit: boolean,

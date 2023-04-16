@@ -1,11 +1,9 @@
 import React from "react";
-import { useForm, FormProvider, UseFormReturn, UseFormProps } from "react-hook-form";
-import { Contact } from "..";
-import { ContactAddressForm } from "../AddContact/AddressForm";
-import { PhoneNumberForm } from "../AddContact/PhoneNumberForm";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useForm, UseFormReturn, UseFormProps } from "react-hook-form";
 import { Form } from "../../../components/Form";
+import { Contact } from "../../../types/contact";
 
 export const EditContact = () => {
   const location = useLocation();

@@ -1,25 +1,8 @@
 import React from "react";
-import * as C from "./style";
 import { Link } from "react-router-dom";
-
-export type Address = {
-  cep: string;
-  state: string;
-  city: string;
-  neighborhood: string;
-  street: string;
-}
-
-export type PhoneNumber = {
-  number: string;
-}
-
-export type Contact = {
-  id: string,
-  name: string,
-  addresses: Address[],
-  phoneNumbers: PhoneNumber[]
-}
+import * as C from "./style";
+import { Address } from "../../types/address";
+import { PhoneNumber } from "../../types/phoneNumber";
 
 export interface IContactCardProps {
   id: string,

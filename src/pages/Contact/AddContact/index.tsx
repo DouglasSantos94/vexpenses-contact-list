@@ -1,10 +1,8 @@
 import React from "react";
-import { useForm, FormProvider, UseFormReturn, UseFormProps, useFormContext } from "react-hook-form";
-import { Contact } from "..";
-import { ContactAddressForm } from "./AddressForm";
-import { PhoneNumberForm } from "./PhoneNumberForm";
+import { useForm, UseFormReturn, UseFormProps, useFormContext } from "react-hook-form";
 import axios from "axios";
 import { Form } from "../../../components/Form";
+import { Contact } from "../../../types/contact";
 
 const defaultValues: Contact = {
   id: "",
