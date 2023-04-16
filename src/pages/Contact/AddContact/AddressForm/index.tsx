@@ -12,7 +12,6 @@ export const ContactAddressForm = () => {
       name: "addresses"
     })
 
-  
   const watchFieldArray = form.watch("addresses");
 
   const controlledFields = addressesField.fields.map((field, index) => {
@@ -58,7 +57,7 @@ export const ContactAddressForm = () => {
             <div>
               <div>
                 <input {...form.register(`addresses.${index}.cep`)} placeholder="CEP" />
-                <button onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
+                <button type="button" onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
               </div>
               <div>
                 <input {...form.register(`addresses.${index}.street`)} placeholder="Rua" />

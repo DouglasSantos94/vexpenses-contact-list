@@ -15,8 +15,6 @@ export const EditContact = () => {
     defaultValues,
   });
 
-  console.log(defaultValues)
-
   const submitForm = (form: Contact) => {
     axios.put(`http://localhost:3000/contacts/${id}`, {
       ...form
