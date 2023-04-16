@@ -1,6 +1,7 @@
-import React from "react";
-import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-form";
-import { Contact } from "../..";
+import React, { useState } from "react";
+import { UseFieldArrayReturn, useFieldArray, useFormContext, Controller } from "react-hook-form";
+import { Address, Contact } from "../..";
+import { cepApi } from "../../../../services/cepApi";
 
 
 export const ContactAddressForm = () => {
@@ -10,6 +11,16 @@ export const ContactAddressForm = () => {
       control: form.control,
       name: "addresses"
     })
+
+  
+  const watchFieldArray = form.watch("addresses");
+
+  const controlledFields = addressesField.fields.map((field, index) => {
+    return {
+      ...field,
+      ...watchFieldArray[index]
+    }
+  })
 
   const addNewAddress = () => {
     addressesField.append({
@@ -27,16 +38,27 @@ export const ContactAddressForm = () => {
     addressesField.remove(index);
   }
 
+  const getAddressApi = (cep: string | null | undefined, index: number) => 
+    cepApi(cep)
+      .then(({data}) => {
+        form.setValue(`addresses.${index}.street`, data.logradouro);
+        form.setValue(`addresses.${index}.neighborhood`, data.bairro);
+        form.setValue(`addresses.${index}.city`, data.localidade);
+        form.setValue(`addresses.${index}.state`, data.uf);
+      })
+  
+
   return (
     <section>
       {
-        addressesField.fields.map((field, index) => (
+        controlledFields.map((field, index) => (
           <div key={field.id}>
             <p>Endereço {index + 1}</p>
             <button disabled={false} onClick={() => removeAddress(index)}>Remover endereço</button>
             <div>
               <div>
                 <input {...form.register(`addresses.${index}.cep`)} placeholder="CEP" />
+                <button onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
               </div>
               <div>
                 <input {...form.register(`addresses.${index}.street`)} placeholder="Rua" />
