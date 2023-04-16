@@ -4,6 +4,7 @@ import { Contact } from "..";
 import { ContactAddressForm } from "./AddressForm";
 import { PhoneNumberForm } from "./PhoneNumberForm";
 import axios from "axios";
+import { Form } from "../../../components/Form";
 
 const defaultValues: Contact = {
   id: "",
@@ -42,18 +43,6 @@ export const AddContact = () => {
   }
   
   return (
-    <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(submitForm)}>
-        <section>
-          <NameInput />
-        </section>
-        <section>
-          <h2>Endereços</h2>
-          <ContactAddressForm />
-        </section>
-        <PhoneNumberForm />
-        <button type="submit">Cadastrar contato</button>
-      </form>
-    </FormProvider>
+    <Form form={form} isEdit={false} submitForm={submitForm} />
   )
 }

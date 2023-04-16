@@ -5,6 +5,7 @@ import { ContactAddressForm } from "../AddContact/AddressForm";
 import { PhoneNumberForm } from "../AddContact/PhoneNumberForm";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { Form } from "../../../components/Form";
 
 export const EditContact = () => {
   const location = useLocation();
@@ -23,15 +24,6 @@ export const EditContact = () => {
   }
 
   return (
-    <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(submitForm)}>
-        <section>
-          <h2>Endereços</h2>
-          <ContactAddressForm />
-        </section>
-        <PhoneNumberForm />
-        <button type="submit">Cadastrar contato</button>
-      </form>
-    </FormProvider>
+    <Form form={form} submitForm={submitForm} isEdit />
   )
 }

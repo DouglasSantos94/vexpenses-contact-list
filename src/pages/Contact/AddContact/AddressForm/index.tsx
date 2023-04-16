@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { UseFieldArrayReturn, useFieldArray, useFormContext, Controller } from "react-hook-form";
+import React from "react";
+import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-form";
 import { Address, Contact } from "../..";
-import { cepApi } from "../../../../services/cepApi";
+import { viaCep } from "../../../../services/viaCep";
 
 
 export const ContactAddressForm = () => {
@@ -38,13 +38,13 @@ export const ContactAddressForm = () => {
   }
 
   const getAddressApi = (cep: string | null | undefined, index: number) => 
-    cepApi(cep)
+    viaCep(cep)
       .then(({data}) => {
         form.setValue(`addresses.${index}.street`, data.logradouro);
         form.setValue(`addresses.${index}.neighborhood`, data.bairro);
         form.setValue(`addresses.${index}.city`, data.localidade);
         form.setValue(`addresses.${index}.state`, data.uf);
-      })
+      });
   
 
   return (
