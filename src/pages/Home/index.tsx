@@ -21,8 +21,14 @@ export const Home = () => {
       .finally(() => window.location.reload());
   }
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value.toUpperCase();
+    setContacts(contacts.filter((contact: Contact) => contact.name.toUpperCase().startsWith(name)));
+  }
+
   return (
     <>
+      <input type="text" onChange={handleSearch} placeholder="BUscar contato" />
       <Link to="/add-contact">Novo contato</Link>
       <ContactList contacts={contacts && contacts} handleDelete={handleDelete} />
     </>
