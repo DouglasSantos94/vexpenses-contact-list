@@ -1,36 +1,3 @@
 {
-  "contacts": [
-    {
-      "name": "Contact 1",
-      "addresses": [
-        {
-          "cep": "89010025",
-          "state": "SC",
-          "city": "Blumenau",
-          "neighborhood": "Centro",
-          "street": "Rua Doutor Luiz de Freitas Melro",
-          "service": "viacep"
-        }
-      ],
-      "phoneNumbers": [
-        "8888888"
-      ]
-    },
-    { 
-      "name": "Contact 2",
-      "addresses": [
-        {
-          "cep": "89010025",
-          "state": "SC",
-          "city": "Blumenau",
-          "neighborhood": "Centro",
-          "street": "Rua Doutor Luiz de Freitas Melro",
-          "service": "viacep"
-        }
-      ],
-      "phoneNumbers": [
-        "8888888"
-      ]
-    }
-  ]
+  "contacts": []
 }
