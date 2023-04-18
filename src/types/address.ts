@@ -4,5 +4,7 @@ export type Address = {
   state: string;
   city: string;
   neighborhood: string;
+  complement?: string;
+  number: string;
   street: string;
 }
