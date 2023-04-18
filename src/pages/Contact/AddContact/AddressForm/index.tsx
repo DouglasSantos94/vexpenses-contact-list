@@ -2,15 +2,15 @@ import React from "react";
 import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-form";
 import { viaCep } from "../../../../services/viaCep";
 import { Contact } from "../../../../types/contact";
-
+import { Address } from "../../../../types/address";
 
 export const ContactAddressForm = () => {
   const form = useFormContext<Contact>();
   const addressesField: UseFieldArrayReturn<Contact> = 
     useFieldArray<Contact>({
       control: form.control,
-      name: "addresses"
-    })
+      name: "addresses",
+    });
 
   const watchFieldArray = form.watch("addresses");
 
@@ -19,16 +19,18 @@ export const ContactAddressForm = () => {
       ...field,
       ...watchFieldArray[index]
     }
-  })
+  });
 
   const addNewAddress = () => {
     addressesField.append({
       cep: "",
       street: "",
+      number: "",
+      complement: "",
       neighborhood: "",
       city: "",
       state: "",
-    })
+    } as Address)
   }
 
   const removeAddress = (index: number) => {
@@ -42,9 +44,11 @@ export const ContactAddressForm = () => {
       .then(({data}) => {
         form.setValue(`addresses.${index}.street`, data.logradouro);
         form.setValue(`addresses.${index}.neighborhood`, data.bairro);
+        form.setValue(`addresses.${index}.neighborhood`, data.bairro);
         form.setValue(`addresses.${index}.city`, data.localidade);
         form.setValue(`addresses.${index}.state`, data.uf);
       });
+  
   
 
   return (
@@ -61,6 +65,12 @@ export const ContactAddressForm = () => {
               </div>
               <div>
                 <input {...form.register(`addresses.${index}.street`)} placeholder="Rua" />
+              </div>
+              <div>
+                <input {...form.register(`addresses.${index}.number`)} placeholder="Número" />
+              </div>
+              <div>
+                <input {...form.register(`addresses.${index}.complement`)} placeholder="Complemento" />
               </div>
               <div>
                 <input {...form.register(`addresses.${index}.neighborhood`)} placeholder="Bairro" />
