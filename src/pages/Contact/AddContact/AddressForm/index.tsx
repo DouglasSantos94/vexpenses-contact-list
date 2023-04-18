@@ -1,5 +1,6 @@
 import React from "react";
 import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import { viaCep } from "../../../../services/viaCep";
 import { Contact } from "../../../../types/contact";
 import { Address } from "../../../../types/address";
@@ -22,6 +23,7 @@ export const ContactAddressForm = () => {
   });
 
   const addNewAddress = () => {
+    console.log(form.formState)
     addressesField.append({
       cep: "",
       street: "",
@@ -64,7 +66,8 @@ export const ContactAddressForm = () => {
                 <button type="button" onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.street`)} placeholder="Rua" />
+                <input {...form.register(`addresses.${index}.street`, { required: "Obrigatório" })} placeholder="Rua" />
+                <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.street`} />
               </div>
               <div>
                 <input {...form.register(`addresses.${index}.number`)} placeholder="Número" />
