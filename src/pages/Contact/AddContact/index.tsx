@@ -13,6 +13,8 @@ const defaultValues: Contact = {
       state: "",
       city: "",
       neighborhood: "",
+      complement: "",
+      number: "",
       street: "",
     }
   ],
