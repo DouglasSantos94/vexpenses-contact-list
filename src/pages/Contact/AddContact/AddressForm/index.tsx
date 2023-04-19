@@ -23,7 +23,6 @@ export const ContactAddressForm = () => {
   });
 
   const addNewAddress = () => {
-    console.log(form.formState)
     addressesField.append({
       cep: "",
       street: "",
@@ -66,7 +65,7 @@ export const ContactAddressForm = () => {
                 <button type="button" onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.street`, { required: "Obrigatório" })} placeholder="Rua" />
+                <input {...form.register(`addresses.${index}.street`, { required: "* Campo obrigatório" })} placeholder="Rua" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.street`} />
               </div>
               <div>

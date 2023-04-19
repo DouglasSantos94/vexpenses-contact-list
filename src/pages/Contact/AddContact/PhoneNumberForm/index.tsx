@@ -1,6 +1,6 @@
 import React from "react";
 import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-form";
-import { Contact } from "../..";
+import { Contact } from "../../../../types/contact";
 
 
 export const PhoneNumberForm = () => {

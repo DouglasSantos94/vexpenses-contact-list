@@ -24,8 +24,6 @@ export const EditContact = () => {
       .then(r => console.log(r.status))
   }
 
-  
-
   return (
     <Form form={form} submitForm={submitForm} isEdit />
   )
