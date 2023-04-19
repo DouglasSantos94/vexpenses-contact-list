@@ -12,13 +12,9 @@ export const ContactList = () => {
   const contactSearchRef = useRef<HTMLInputElement>(null);
 
   const {
-    searchedContactName,
     suggestions,
-    selectedSuggestion,
-    activeSuggestion,
+    showSuggestions,
     handleSearch,
-    handleKeyDown,
-    handleClick
   } = useContactSearch(contacts, contactSearchRef.current);
 
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -26,15 +22,14 @@ export const ContactList = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/contacts")
       .then(({data})=> setContacts(data));
-  }, [])
-  console.log(contacts)
+  }, []);
 
   return (
     <>
       <div>
-        <input type="text" onChange={handleSearch} value={searchedContactName} onKeyDown={handleKeyDown} ref={contactSearchRef} placeholder="Buscar contato" />
-        <div style={{position: "absolute", display: "flex", flexDirection: "column", backgroundColor: "#f9f9f9", minWidth: "160px", boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)", zIndex: 1}}>
-          {suggestions.map(({ id, name }: Contact) => <Link key={id} to={`/contact/${id}`}>{name}</Link>)}
+        <input type="text" onChange={handleSearch} ref={contactSearchRef} placeholder="Buscar contato" />
+        <div style={{display: showSuggestions ? "flex" : "none", flexDirection: "column", position: "absolute", backgroundColor: "#f9f9f9", minWidth: "160px", boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)", zIndex: 1}}>
+          {suggestions.length > 0 && suggestions.map(({ id, name }: Contact) => <Link key={id} to={`/contact/${id}`}>{name}</Link>)}
         </div>
       </div>
       
