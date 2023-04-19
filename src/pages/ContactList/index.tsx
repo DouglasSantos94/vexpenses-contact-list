@@ -1,41 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { StyledContactList } from "./style";
-import { ContactCard, Contact } from "../Contact";
+import { ContactCard } from "../Contact";
+import { Contact } from "../../types/contact";
+import { useContactSearch } from "../../hooks/useContactSearch";
+import { Link } from "react-router-dom";
+
 
 export const ContactList = () => {
-
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const contactSearchRef = useRef<HTMLInputElement>(null);
+
+  const {
+    searchedContactName,
+    suggestions,
+    selectedSuggestion,
+    activeSuggestion,
+    handleSearch,
+    handleKeyDown,
+    handleClick
+  } = useContactSearch(contacts, contactSearchRef.current);
 
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
-  const handleDelete = (id: string) => {
-    console.log(id)
-    axios.delete(`http://localhost:3000/contacts/${id}`)
-      .then(r => console.log(r.status))
-      .finally(() => window.location.reload());
-  }
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.value.toUpperCase();
-    setContacts(contacts.filter((contact: Contact) => contact.name.toUpperCase().startsWith(name)));
-  }
 
   useEffect(() => {
     axios.get("http://localhost:3000/contacts")
       .then(({data})=> setContacts(data));
   }, [])
+  console.log(contacts)
 
   return (
     <>
-      <input type="text" onChange={handleSearch} placeholder="BUscar contato" />
+      <div>
+        <input type="text" onChange={handleSearch} value={searchedContactName} onKeyDown={handleKeyDown} ref={contactSearchRef} placeholder="Buscar contato" />
+        <div style={{position: "absolute", display: "flex", flexDirection: "column", backgroundColor: "#f9f9f9", minWidth: "160px", boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)", zIndex: 1}}>
+          {suggestions.map(({ id, name }: Contact) => <Link key={id} to={`/contact/${id}`}>{name}</Link>)}
+        </div>
+      </div>
+      
       <StyledContactList>
         {letters.map(
           (letter, i) => (
             <div key={i}>
               <p>{letter}</p>
-              {contacts.filter(contact => contact.name[0] == letter).map(({id, name, addresses, phoneNumbers}: Contact, i) => 
-                <ContactCard id={id} name={name} addresses={addresses} phoneNumbers={phoneNumbers} handleDelete={handleDelete} key={i}/>
+              {contacts.filter(contact => contact.name[0]?.toUpperCase() == letter).map((contact, i) => 
+                <ContactCard contact={contact} key={i} />
               )}
             </div>
           ))}
