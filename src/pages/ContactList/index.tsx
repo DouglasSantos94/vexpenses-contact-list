@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { StyledContactList } from "./style";
+import { ContactSection, StyledContactList } from "./style";
 import { ContactCard } from "../Contact";
 import { Contact } from "../../types/contact";
 import { useContactSearch } from "../../hooks/useContactSearch";
@@ -36,12 +36,12 @@ export const ContactList = () => {
       <StyledContactList>
         {letters.map(
           (letter, i) => (
-            <div key={i}>
+            <ContactSection key={i}>
               <p>{letter}</p>
               {contacts.filter(contact => contact.name[0]?.toUpperCase() == letter).map((contact, i) => 
                 <ContactCard contact={contact} key={i} />
               )}
-            </div>
+            </ContactSection>
           ))}
       </StyledContactList>
     </>
