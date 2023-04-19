@@ -1,29 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as C from "./style";
-import { Address } from "../../types/address";
-import { PhoneNumber } from "../../types/phoneNumber";
+import { Contact } from "../../types/contact";
 
 export interface IContactCardProps {
-  id: string,
-  name: string,
-  addresses: Address[],
-  phoneNumbers: PhoneNumber[],
-  handleDelete: (id: string) => void
+  contact: Contact
 }
 
-export const ContactCard = ({id, name, addresses, phoneNumbers, handleDelete}: IContactCardProps) => {
+export const ContactCard = ({ contact: { id, name , addresses, phoneNumbers} }: IContactCardProps) => {
   return (
     <C.Card>
       <C.CardTitle>{name}</C.CardTitle>
       <C.ContactInfo>
-        <p>Endereço {id}: {addresses[0].street}</p>
-        <p>Telefone {id}: {phoneNumbers[0].number}</p>
+        <p>Endereço: {addresses[0].street}</p>
+        <p>Telefone: {phoneNumbers[0].number}</p>
       </C.ContactInfo>
-      <Link to={`/contact/${id}`} state={{id, name, addresses, phoneNumbers}}>
+      <Link to={`/contact/${id}`}>
         Ver contato
       </Link>
-      <button onClick={() => handleDelete(id)}>Excluir</button>
     </C.Card>
   );
 }
