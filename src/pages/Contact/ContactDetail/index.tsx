@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PhoneNumber } from "../../../types/phoneNumber";
 import { Address } from "../../../types/address";
-import axios from "axios";
+import { deleteContact, getContact } from "../../../api";
 
 export const ContactDetail = () => {
   const [ contact, setContact ] = useState({
@@ -16,14 +16,16 @@ export const ContactDetail = () => {
   const { id } = useParams();
 
   const handleDelete = (id: string) => {
-    axios.delete(`http://localhost:3000/contacts/${id}`)
-      .then(r => console.log(r.status))
+    deleteContact(id)
+      .then(r => r.status)
+      .catch(status => console.log(status))
       .finally(() => window.location.reload());
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/contacts/${id}`)
+    getContact(id)
       .then(({data}) => setContact(data))
+      .catch(e => console.log(e))
   }, [id]);
 
   return (

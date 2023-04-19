@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm, UseFormReturn, UseFormProps, useFormContext } from "react-hook-form";
-import axios from "axios";
 import { Form } from "../../../components/Form";
 import { Contact } from "../../../types/contact";
+import { createContact } from "../../../api";
 
 const defaultValues: Contact = {
   id: "",
@@ -36,10 +36,9 @@ export const AddContact = () => {
   });
 
   const submitForm = (form: Contact) => {
-    axios.post("http://localhost:3000/contacts/", {
-      ...form
-    })
-      .then(r => console.log(r.status));
+    createContact(form)
+      .then(r => r.status)
+      .catch(e => console.log(e));
   }
   
   return (
