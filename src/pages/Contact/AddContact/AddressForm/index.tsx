@@ -43,8 +43,8 @@ export const ContactAddressForm = () => {
   const getAddressApi = (cep: string | null | undefined, index: number) => 
     viaCep(cep)
       .then(({data}) => {
+        form.setValue(`addresses.${index}.cep`, data.cep);
         form.setValue(`addresses.${index}.street`, data.logradouro);
-        form.setValue(`addresses.${index}.neighborhood`, data.bairro);
         form.setValue(`addresses.${index}.neighborhood`, data.bairro);
         form.setValue(`addresses.${index}.city`, data.localidade);
         form.setValue(`addresses.${index}.state`, data.uf);
@@ -61,27 +61,32 @@ export const ContactAddressForm = () => {
             <button disabled={false} onClick={() => removeAddress(index)}>Remover endereço</button>
             <div>
               <div>
-                <input {...form.register(`addresses.${index}.cep`)} placeholder="CEP" />
+                <input {...form.register(`addresses.${index}.cep`, { required: "* Campo obrigatório" })} placeholder="CEP" />
                 <button type="button" onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
+                <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.cep`} />
               </div>
               <div>
                 <input {...form.register(`addresses.${index}.street`, { required: "* Campo obrigatório" })} placeholder="Rua" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.street`} />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.number`)} placeholder="Número" />
+                <input {...form.register(`addresses.${index}.number`, { required: "* Campo obrigatório" })} placeholder="Número" />
+                <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.number`} />
               </div>
               <div>
                 <input {...form.register(`addresses.${index}.complement`)} placeholder="Complemento" />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.neighborhood`)} placeholder="Bairro" />
+                <input {...form.register(`addresses.${index}.neighborhood`, { required: "* Campo obrigatório" })} placeholder="Bairro" />
+                <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.neighborhood`} />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.city`)} placeholder="Cidade" />
+                <input {...form.register(`addresses.${index}.city`, { required: "* Campo obrigatório" })} placeholder="Cidade" />
+                <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.city`} />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.state`)} placeholder="Estado" />
+                <input {...form.register(`addresses.${index}.state`, { required: "* Campo obrigatório" })} placeholder="Estado" />
+                <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.state`} />
               </div>
             </div>
           </div>
