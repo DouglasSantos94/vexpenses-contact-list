@@ -3,6 +3,7 @@ import { useForm, UseFormReturn, UseFormProps, useFormContext } from "react-hook
 import { Form } from "../../../components/Form";
 import { Contact } from "../../../types/contact";
 import { createContact } from "../../../api";
+import { FormInput } from "../../../components/Form/style";
 
 const defaultValues: Contact = {
   id: "",
@@ -23,11 +24,6 @@ const defaultValues: Contact = {
       number: ""
     }
   ]
-}
-
-export const NameInput = () => {
-  const { register } = useFormContext();
-  return <input {...register("name")} />
 }
  
 export const AddContact = () => {
