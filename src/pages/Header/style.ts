@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.header`
@@ -18,7 +19,7 @@ const Title = styled.h1`
   margin-left: 30px;
 `;
 
-const NewContact = styled.button`
+const NewContact = styled(Link)`
   text-decoration: none;
   width: 150px;
   height: 35px;
