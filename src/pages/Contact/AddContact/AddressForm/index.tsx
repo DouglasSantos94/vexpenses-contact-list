@@ -4,6 +4,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { viaCep } from "../../../../services/viaCep";
 import { Contact } from "../../../../types/contact";
 import { Address } from "../../../../types/address";
+import { FormInput } from "../../../../components/Form/style";
 
 export const ContactAddressForm = () => {
   const form = useFormContext<Contact>();
@@ -61,31 +62,31 @@ export const ContactAddressForm = () => {
             <button disabled={false} onClick={() => removeAddress(index)}>Remover endereço</button>
             <div>
               <div>
-                <input {...form.register(`addresses.${index}.cep`, { required: "* Campo obrigatório" })} placeholder="CEP" />
-                <button type="button" onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
+                <FormInput {...form.register(`addresses.${index}.cep`, { required: "* Campo obrigatório" })} placeholder="CEP" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.cep`} />
               </div>
+              <button type="button" onClick={() => getAddressApi(form.getValues(`addresses.${index}.cep`), index)}>Buscar endereço</button>
               <div>
-                <input {...form.register(`addresses.${index}.street`, { required: "* Campo obrigatório" })} placeholder="Rua" />
+                <FormInput {...form.register(`addresses.${index}.street`, { required: "* Campo obrigatório" })} placeholder="Rua" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.street`} />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.number`, { required: "* Campo obrigatório" })} placeholder="Número" />
+                <FormInput {...form.register(`addresses.${index}.number`, { required: "* Campo obrigatório" })} placeholder="Número" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.number`} />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.complement`)} placeholder="Complemento" />
+                <FormInput {...form.register(`addresses.${index}.complement`)} placeholder="Complemento" />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.neighborhood`, { required: "* Campo obrigatório" })} placeholder="Bairro" />
+                <FormInput {...form.register(`addresses.${index}.neighborhood`, { required: "* Campo obrigatório" })} placeholder="Bairro" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.neighborhood`} />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.city`, { required: "* Campo obrigatório" })} placeholder="Cidade" />
+                <FormInput {...form.register(`addresses.${index}.city`, { required: "* Campo obrigatório" })} placeholder="Cidade" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.city`} />
               </div>
               <div>
-                <input {...form.register(`addresses.${index}.state`, { required: "* Campo obrigatório" })} placeholder="Estado" />
+                <FormInput {...form.register(`addresses.${index}.state`, { required: "* Campo obrigatório" })} placeholder="Estado" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.state`} />
               </div>
             </div>

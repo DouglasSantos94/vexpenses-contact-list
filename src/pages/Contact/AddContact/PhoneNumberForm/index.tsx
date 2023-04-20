@@ -2,6 +2,7 @@ import React from "react";
 import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-form";
 import { Contact } from "../../../../types/contact";
 import { ErrorMessage } from "@hookform/error-message";
+import { FormInput } from "../../../../components/Form/style";
 
 
 export const PhoneNumberForm = () => {
@@ -30,10 +31,10 @@ export const PhoneNumberForm = () => {
         phoneNumbersField.fields.map((field, index) => (
           <div key={field.id}>
             <p>Telefone {index + 1}</p>
-            <button disabled={false} onClick={() => removePhoneNumber(index)}>Remover endereço</button>
+            <button disabled={false} onClick={() => removePhoneNumber(index)}>Remover telefone</button>
             <div>
               <div>
-                <input {...form.register(`phoneNumbers.${index}.number`, { required: "* Campo obrigatório" })} placeholder="Telefone" />
+                <FormInput {...form.register(`phoneNumbers.${index}.number`, { required: "* Campo obrigatório" })} placeholder="Telefone" />
                 <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.state`} />
               </div>
             </div>
