@@ -13,7 +13,9 @@ const Wrapper = styled.header`
   box-shadow: 1px 1px 2px rgba(168, 168, 168, 0.7);
 `;
 
-const Title = styled.h1`
+const Title = styled(Link)`
+  text-decoration: none;
+  color: black;
   font-weight: 800;
   font-size: 30px;
   margin-left: 30px;
