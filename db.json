@@ -1,0 +1,44 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "",
+      "addresses": [
+        {
+          "cep": "88113260",
+          "state": "SC",
+          "city": "São José",
+          "neighborhood": "Areias",
+          "street": "Rua Adão Manoel da Silva",
+          "number": "197",
+          "complement": "Bloco 3 apto 903"
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "number": "888888"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "",
+      "addresses": [
+        {
+          "cep": "88113260",
+          "state": "SC",
+          "city": "São José",
+          "neighborhood": "Areias",
+          "street": "Rua Adão Manoel da Silva",
+          "number": "197",
+          "complement": "Bloco 3 apto 903"
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "number": "888888"
+        }
+      ]
+    }
+  ]
+}
