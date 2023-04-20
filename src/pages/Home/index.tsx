@@ -6,7 +6,6 @@ export const Home = () => {
 
   return (
     <>
-      <Link to="/add-contact">Novo contato</Link>
       <ContactList />
     </>
   )
