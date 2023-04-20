@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { ContactSection, ContactSectionTitle, StyledContactList } from "./style";
+import { ContactSection, ContactSectionTitle, InputSearchWrapper, StyledContactList, ContactListWrapper, InputSearch, ContactSuggestions, StyledSuggestion } from "./style";
 import { ContactCard } from "../Contact";
 import { Contact } from "../../types/contact";
 import { useContactSearch } from "../../hooks/useContactSearch";
 import { Link } from "react-router-dom";
+import { getContacts } from "../../api";
 
 
 export const ContactList = () => {
@@ -20,18 +21,18 @@ export const ContactList = () => {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   useEffect(() => {
-    axios.get("http://localhost:3000/contacts")
+    getContacts()
       .then(({data})=> setContacts(data));
   }, []);
 
   return (
-    <>
-      <div>
-        <input type="text" onChange={handleSearch} ref={contactSearchRef} placeholder="Buscar contato" />
-        <div style={{display: showSuggestions ? "flex" : "none", flexDirection: "column", position: "absolute", backgroundColor: "#f9f9f9", minWidth: "160px", boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)", zIndex: 1}}>
-          {suggestions.length > 0 && suggestions.map(({ id, name }: Contact) => <Link key={id} to={`/contact/${id}`}>{name}</Link>)}
-        </div>
-      </div>
+    <ContactListWrapper>
+      <InputSearchWrapper>
+        <InputSearch type="text" onChange={handleSearch} ref={contactSearchRef} placeholder="Buscar contato" />
+        <ContactSuggestions showSuggestions={showSuggestions}>
+          {suggestions.length > 0 && suggestions.map(({ id, name }: Contact) => <StyledSuggestion key={id} to={`/contact/${id}`}>{name}</StyledSuggestion>)}
+        </ContactSuggestions>
+      </InputSearchWrapper>
       
       <StyledContactList>
         {letters.map(
@@ -44,6 +45,6 @@ export const ContactList = () => {
             </ContactSection>
           ))}
       </StyledContactList>
-    </>
+    </ContactListWrapper>
   )
 }
