@@ -15,9 +15,9 @@ export const ContactCard = ({ contact: { id, name , addresses, phoneNumbers} }: 
         <p>Endereço: {addresses[0].street}</p>
         <p>Telefone: {phoneNumbers[0].number}</p>
       </C.ContactInfo>
-      <Link to={`/contact/${id}`}>
+      <C.SeeContact to={`/contact/${id}`}>
         Ver contato
-      </Link>
+      </C.SeeContact>
     </C.Card>
   );
 }
