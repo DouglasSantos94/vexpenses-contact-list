@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm, UseFormReturn, UseFormProps } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "../../../components/Form";
@@ -10,6 +10,7 @@ import { editContact } from "../../../api";
 export const EditContact = () => {
   const location = useLocation();
   const {id, name, addresses, phoneNumbers} = location.state;
+  const navigate = useNavigate();
 
   const defaultValues = {id, name, addresses, phoneNumbers};
   const form: UseFormReturn<Contact, UseFormProps> = useForm<Contact>({
@@ -20,6 +21,7 @@ export const EditContact = () => {
   const submitForm = (form: Contact) => {
     editContact(form)
       .then(r => console.log(r.status))
+      .finally(() => navigate("/"));
   }
 
   return (

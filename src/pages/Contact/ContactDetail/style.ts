@@ -4,6 +4,7 @@ export const ContactDetailWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 100px;
 `
 
 export const ContactDetailCard = styled.div`

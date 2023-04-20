@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PhoneNumber } from "../../../types/phoneNumber";
 import { Address } from "../../../types/address";
 import { deleteContact, getContact } from "../../../api";
@@ -24,11 +23,13 @@ export const ContactDetail = () => {
 
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   const handleDelete = (id: string) => {
     deleteContact(id)
       .then(r => r.status)
       .catch(status => console.log(status))
-      .finally(() => window.location.reload());
+      .finally(() => navigate("/"));
   }
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export const ContactDetail = () => {
               </ContactDetailSection>
             </ContactDetailInfo>
             <ContactDetailButtons>
-              <EditContact to={`/edit/${id}`}>Editar contato</EditContact>
+              <EditContact to={`/edit/${id}`} state={contact}>Editar contato</EditContact>
               <DeleteContact onClick={() => handleDelete(id)}>Excluir</DeleteContact>
             </ContactDetailButtons>
           </ContactDetailCard>
