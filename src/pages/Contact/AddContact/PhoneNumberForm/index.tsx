@@ -3,6 +3,7 @@ import { UseFieldArrayReturn, useFieldArray, useFormContext } from "react-hook-f
 import { Contact } from "../../../../types/contact";
 import { ErrorMessage } from "@hookform/error-message";
 import { FormInput } from "../../../../components/Form/style";
+import { NewPhoneNumberButtonButton, PhoneNumberWrapper } from "./style";
 
 
 export const PhoneNumberForm = () => {
@@ -26,22 +27,20 @@ export const PhoneNumberForm = () => {
   }
 
   return (
-    <section>
+    <PhoneNumberWrapper>
       {
         phoneNumbersField.fields.map((field, index) => (
           <div key={field.id}>
             <p>Telefone {index + 1}</p>
-            <button disabled={false} onClick={() => removePhoneNumber(index)}>Remover telefone</button>
             <div>
-              <div>
-                <FormInput {...form.register(`phoneNumbers.${index}.number`, { required: "* Campo obrigatório" })} placeholder="Telefone" />
-                <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.state`} />
-              </div>
+              <FormInput {...form.register(`phoneNumbers.${index}.number`, { required: "* Campo obrigatório" })} placeholder="Telefone" />
+              <ErrorMessage errors={form.formState.errors} name={`addresses.${index}.state`} />
             </div>
+            <button disabled={false} onClick={() => removePhoneNumber(index)}>Remover telefone</button>
           </div>
         ))
       }
-      <button type="button" onClick={addNewPhoneNumber}>Novo Telefone</button>
-    </section>
+      <NewPhoneNumberButtonButton type="button" onClick={addNewPhoneNumber}>Novo Telefone</NewPhoneNumberButtonButton>
+    </PhoneNumberWrapper>
   );
 }

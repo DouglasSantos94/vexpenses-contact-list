@@ -1,9 +1,8 @@
 import React from "react";
-import { useForm, UseFormReturn, UseFormProps, useFormContext } from "react-hook-form";
+import { useForm, UseFormReturn, UseFormProps } from "react-hook-form";
 import { Form } from "../../../components/Form";
 import { Contact } from "../../../types/contact";
 import { createContact } from "../../../api";
-import { FormInput } from "../../../components/Form/style";
 
 const defaultValues: Contact = {
   id: "",
