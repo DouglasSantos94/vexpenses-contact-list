@@ -3,7 +3,7 @@ import { Contact } from "../../types/contact";
 import { Link } from "react-router-dom";
 
 interface IContactSuggestionsProps {
-  showSuggestions: boolean
+  showSuggestions: boolean;
 }
 
 export const ContactListWrapper = styled.div`
@@ -29,10 +29,10 @@ export const ContactSection = styled.li`
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 90%;
   align-items: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-`
+`;
 
 export const ContactSectionTitle = styled.p`
   font-size: 35px;
@@ -58,13 +58,14 @@ export const InputSearch = styled.input`
 `;
 
 export const ContactSuggestions = styled.div`
-  display: ${({showSuggestions}: IContactSuggestionsProps) => showSuggestions ? "flex" : "none"}; 
+  display: ${({ showSuggestions }: IContactSuggestionsProps) =>
+    showSuggestions ? "flex" : "none"};
   flex-direction: column;
   position: absolute;
   top: 130px;
   background-color: #f9f9f9;
   width: 250px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 `;
 
