@@ -12,7 +12,7 @@ export const Card = styled.div`
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px -1px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 550px) {
     width: 100%;
   }
 `;
@@ -30,6 +30,12 @@ export const ContactInfo = styled.div`
   justify-content: space-evenly;
   align-items: center;
   font-size: 12px;
+
+  @media (max-width: 550px) {
+    height: 80px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
 export const SeeContact = styled(Link)`
