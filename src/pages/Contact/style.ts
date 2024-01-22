@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Card = styled.div`
-  width: 80%;
+  width: 90%;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ export const Card = styled.div`
 
 export const CardTitle = styled.h2`
   font-size: 20px;
+  margin-bottom: 20px;
   font-weight: normal;
 `;
 
@@ -44,7 +45,7 @@ export const SeeContact = styled(Link)`
   border: none;
   font-size: 16px;
   cursor: pointer;
-  transition: 
+  transition: background 0.1s ease-in-out 0.1s;
 
   &:hover {
     background-color: #1964a4;

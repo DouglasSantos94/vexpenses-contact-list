@@ -36,6 +36,7 @@ export const ContactSection = styled.li`
 
 export const ContactSectionTitle = styled.p`
   font-size: 35px;
+  margin-bottom: 40px;
   text-align: left;
   width: 90%;
 `;
