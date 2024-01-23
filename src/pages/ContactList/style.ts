@@ -63,7 +63,7 @@ export const ContactSuggestions = styled.div`
     showSuggestions ? "flex" : "none"};
   flex-direction: column;
   position: absolute;
-  top: 130px;
+  top: 123px;
   background-color: #f9f9f9;
   width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -77,6 +77,8 @@ export const StyledSuggestion = styled(Link)`
   color: black;
   padding: 10px;
   box-sizing: border-box;
+  border-radius: 2px;
+  transition: background 0.2s ease-in-out 0.2s;
 
   :hover {
     background-color: #ccc;
