@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -19,6 +18,10 @@ const Title = styled(Link)`
   font-weight: 800;
   font-size: 30px;
   margin-left: 30px;
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const NewContact = styled(Link)`
@@ -28,13 +31,18 @@ const NewContact = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0A7EE3;
+  background-color: #0a7ee3;
   border-radius: 6px;
   color: white;
   border: none;
   font-size: 20px;
   cursor: pointer;
-  margin-right: 100px;
+  margin-right: 30px;
+
+  @media (max-width: 600px) {
+    width: 100px;
+    font-size: 13px;
+  }
 `;
 
 export { Title, Wrapper, NewContact };
