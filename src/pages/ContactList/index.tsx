@@ -18,10 +18,8 @@ export const ContactList = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const contactSearchRef = useRef<HTMLInputElement>(null);
 
-  const { suggestions, showSuggestions, handleSearch } = useContactSearch(
-    contacts,
-    contactSearchRef.current
-  );
+  const { suggestions, showSuggestions, handleSearch, handleBlur } =
+    useContactSearch(contacts, contactSearchRef.current);
 
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -35,6 +33,7 @@ export const ContactList = () => {
         <InputSearch
           type="text"
           onChange={handleSearch}
+          onBlur={handleBlur}
           ref={contactSearchRef}
           placeholder="Buscar contato"
         />
