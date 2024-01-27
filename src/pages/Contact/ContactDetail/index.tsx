@@ -67,7 +67,7 @@ export const ContactDetail = () => {
           </ContactDetailInfo>
           <ContactDetailButtons>
             <EditContact to={`/edit/${id}`} state={contact}>
-              Editar contato
+              Editar
             </EditContact>
             <DeleteContact onClick={() => handleDelete(id)}>
               Excluir

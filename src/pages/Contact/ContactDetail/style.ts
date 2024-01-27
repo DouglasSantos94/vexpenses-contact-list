@@ -5,6 +5,9 @@ export const ContactDetailWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 100px;
+  @media (max-width: 650px) {
+    padding-top: 50px;
+  }
 `;
 
 export const ContactDetailCard = styled.div`
@@ -16,6 +19,12 @@ export const ContactDetailCard = styled.div`
   align-items: center;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), -1px -1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  box-sizing: border-box;
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+    width: 90%;
+  }
 `;
 
 export const ContactDetailName = styled.h1`
@@ -41,6 +50,11 @@ export const ContactDetailSection = styled.section`
     font-size: 13px;
     margin-bottom: 5px;
   }
+
+  @media (max-width: 650px) {
+    min-height: 20%;
+    width: 100%;
+  }
 `;
 
 export const ContactDetailInfo = styled.div`
@@ -57,6 +71,13 @@ export const ContactDetailButtons = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 650px) {
+    margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
 `;
 
 export const EditContact = styled(Link)`
@@ -70,6 +91,10 @@ export const EditContact = styled(Link)`
   border-radius: 6px;
   color: white;
   font-size: 15px;
+
+  @media (max-width: 650px) {
+    width: 100px;
+  }
 `;
 
 export const DeleteContact = styled.button`
@@ -85,4 +110,8 @@ export const DeleteContact = styled.button`
   font-size: 15px;
   border: none;
   cursor: pointer;
+
+  @media (max-width: 650px) {
+    width: 100px;
+  }
 `;
